@@ -1,0 +1,25 @@
+Установка статической библиотеки:
+
+1. Выгрузить содержимое папки Base в папку с проектом
+2. В настройках проекта в линковщике указать:
+
+-lsfml-graphics
+-lsfml-window
+-lsfml-system
+
+3. Подключить необходимые заголовочные файлы, файл BaseGUIC.HPP содержит все базовые классы
+
+Файл GUIC_Settings.HPP содержит настройки по умолчанию
+
+Installing a static library:
+
+1. Upload the files from the folder "Base" to the project folder
+2. In the project settings in the linker, specify:
+
+ -lsfml-graphics
+ -lsfml-window
+ -lsfml-system
+
+3. Connect the required header files, the BaseGUIC file.HPP contains all the base classes
+
+The GUIC_Settings.HPP file contains the default settings
