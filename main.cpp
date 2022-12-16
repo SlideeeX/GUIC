@@ -1,5 +1,6 @@
 #include <iostream>
-#include "GUIC/BaseGUIC.hpp" // Подключение библиотеки
+#include <GUIC/Settings.hpp>
+#include <GUIC/BaseGUIC.hpp> // Подключение библиотеки
 
 using namespace guic; // Именное пространство GUIC
 
@@ -12,7 +13,9 @@ int main(){
 	setlocale(LC_ALL, "Rus"); // Установить русский язык
 	
 	sf::Image lightbackground; // Создать изображение "lightbackground"
+	sf::Image darkbackground; // Создать изображение "lightbackground"
 	lightbackground.loadFromFile("resources/interface/lightbackground.png"); // Загрузить изображение из файла
+	darkbackground.loadFromFile("resources/interface/background.png"); // Загрузить изображение из файла
 	
 	ModalWindow window(screen_w, screen_h, "GUIC");  // Создать объект класса "Модальное окно"
 	
@@ -36,7 +39,7 @@ int main(){
 	// sf::Font создаёт объект класса "Шрифт", подробнее в документации SFML
 	//////////////////////////////////////////////////////////////////////////////////////
 	
-	Interface background(IntRect(0, 0, screen_w, screen_h), "resources/interface/background.png"); // Создать объект класса "Интерфейс", здесь играет роль фона
+	Interface background(IntRect(0, 0, screen_w, screen_h), &darkbackground); // Создать объект класса "Интерфейс", здесь играет роль фона
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// sf::IntRect это базовый объект SFML - прямоугольник, где sf::IntRect(Координата x, координата y, ширина, высота)
@@ -99,11 +102,11 @@ int main(){
 	interface.show(); // Показывать объект
 	container.add(interface); // Добавить объект в контейнер
 	
-	Title title(IntRect(0, 0, 50, 40), "Тыкать тут", 20); // Создать объект класса "Заголовок"
+	Title title(IntRect(0, 0, 50, 40), "Тыкать здесь", 20); // Создать объект класса "Заголовок"
 	title.show(); // Показывать объект
 	container.add(title); // Добавить объект в контейнер
 	
-	MultilineTitle mltitle(IntRect(50, 100, 150, 50), "Съешь ещё этих мягких французских булок, да выпей чаю."); // Создать объект класса "Мнострочный текст"
+	MultilineTitle mltitle(IntRect(50, 100, 150, 50), "Съешь ещё этих мягких французских булок да выпей чаю"); // Создать объект класса "Мнострочный текст"
 	mltitle.show(); // Показывать объект
 	container.add(mltitle); // Добавить объект в контейнер
 	
@@ -116,8 +119,12 @@ int main(){
 	container.add(button); // Добавить объект в контейнер
 	
 	List list(IntRect(200, 0, 100, 500), titledImageItems, &lightbackground, 5); // Создать объект класса "Список"
-	list.show();
-	container.add(list);
+	list.show(); // Показывать объект
+	container.add(list); // Добавить объект в контейнер
+	
+	Enter enter(IntRect(70, 300, 300, 50), &darkbackground); // Создать объект класса "Ввод"
+	enter.show(); // Показывать объект
+	container.add(enter); // Добавить объект в контейнер
 	
 	window.add(container); // Добавить контейнер в модальное окно
 	

@@ -1,9 +1,9 @@
 Developed by SlideeeX
 
-Graphical User Interface Creator - библиотека с открытым кодом, основаная на графике SFML, предназначенная для упрощённого создания интерфейса приложений
-Graphical User Interface Creator is a open source code library based on SFML graphics, designed to simplify the creation of applications interface
+Graphical User Interface Creator - библиотека, основаная на графике SFML (В открытом доступе на момент написания), предназначенная для упрощённого создания интерфейса приложений
+Graphical User Interface Creator is a open source code library based on SFML graphics (Freely available at the time of writing), designed to simplify the creation of applications interface
 
-v.1.0
+v.1.1
 
 SFML - https://www.sfml-dev.org
 
