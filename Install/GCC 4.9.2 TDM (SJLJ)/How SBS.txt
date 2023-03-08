@@ -1,0 +1,35 @@
+Установка библиотеки:
+
+1. Выгрузить содержимое папки в папку с проектом
+2. Путь к файлам включения указать ".../Guic/include"
+3. Путь к библиотекам указать ".../Guic/lib"
+
+4. В линковщике указать:
+
+-lsfml-graphics
+-lsfml-window
+-lsfml-system
+-lguic-base
+
+5. Подключить необходимые заголовочные файлы, файл BaseGUIC.hpp содержит все базовые классы
+
+Файл Settings.hpp содержит настройки по умолчанию, можно подключить перед подключением BaseGUIC.hpp
+
+------------------------------------------------------------------
+
+Installing library:
+
+1. Upload the files from the folder to the project folder
+2. Path to include: ".../Guic/include"
+3. Path to lib: ".../Guic/lib"
+
+4. In the linker specify:
+
+-lsfml-graphics
+-lsfml-window
+-lsfml-system
+-lguic-base
+
+5. Include the required header files, the BaseGUIC.hpp contains all the base classes
+
+The Settings.hpp file contains the default settings, you may include it before BaseGUIC.hpp
