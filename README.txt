@@ -9,4 +9,4 @@ SFML - https://www.sfml-dev.org
 
 slideeex@mail.ru
 
-© 2022 V. Zaidov. All Rights Reserved.
+© 2023 V. Zaidov. All Rights Reserved.
