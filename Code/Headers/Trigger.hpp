@@ -1,46 +1,50 @@
-#ifndef TRIGGER_HPP
-#define TRIGGER_HPP
+#pragma once
+#include <Guic/config/Export.hpp>
+#include <Guic/config/Types.hpp>
+#include <Guic/engine/Key.hpp>
+#include <Guic/Element.hpp>
+#include <functional>
 
-#include "Interface.hpp"
+namespace guic {
 
-namespace guic
-
+class GUIC_API Trigger : public Element
 {
+public:
+    Trigger();
+    Trigger(Rect rect);
 
-using namespace sf;
+    void on(std::function<bool()> condition);
+    void on(std::function<bool(const Event*)> condition);
 
-class DLLIMPORT Trigger : public Interface
+    void bind(std::function<void()> callback);
+    void bind(std::function<void(const Event*)> callback);
 
-{
+    void onKey(engine::Keys keys, std::function<void(const Event*)> callback);
+    void onKeys(engine::Keys keys, std::function<void(const Event*)> callback);
 
-private:
+    void onLMB(std::function<void()> callback);
+    void onRMB(std::function<void()> callback);
+
+    void onHover(std::function<void(bool hovered)> callback);
+
+    void control(const Event* event) override;
+
+    void setRadius(int radius);
+    int getRadius() const;
+
+    Rect collectDirtyRect() const override;
+    Element* hit(int x, int y) override;
 
 protected:
 
-public:
+private:
+    std::function<bool(const Event*)> condition = {};
+    std::function<void(const Event*)> callback = {};
 
-	Trigger();
-	
-	Trigger(IntRect rect);
-	
-	Trigger(IntRect rect, String file);
-			
-	Trigger(IntRect rect, Image* image);
-			
-	bool LMB(Event event, Vector2f pos);
-	
-	bool LMB(Modal modal);
-	
-	bool RMB(Event event, Vector2f pos);
-	
-	bool RMB(Modal modal);
-	
-	bool Highlight(Event event, Vector2f pos);
-	
-	bool Highlight(Modal modal);
+    static engine::Keys getModsMask(const Event* event);
+    int radius = 0;
 
+    bool hovered = false;
 };
 
-};
-
-#endif
+}

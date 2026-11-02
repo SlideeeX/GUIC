@@ -1,50 +1,42 @@
-#ifndef CONTAINER_HPP
-#define CONTAINER_HPP
+#pragma once
+#include <Guic/Element.hpp>
+#include <vector>
 
-#include "Interface.hpp"
+namespace guic {
 
-#ifndef GUIC_BASE_CONTAINER_LAYER
-#define GUIC_BASE_CONTAINER_LAYER 1
-#endif
-
-#ifndef GUIC_MAX_LAYER
-#define GUIC_MAX_LAYER 6
-#endif
-
-namespace guic
-
+class GUIC_API Container : public Element
 {
 
-using namespace sf;
-
-class DLLIMPORT Container :public Interface
-
-{
-
-private:
-	
 public:
-	
-	bool changed;
-	
-	Items items;
-	
 	Container();
-		
-	Container(IntRect containerRect);
-		
-	void add(Addable &item);
-		
-	void remove(Addable &item);
-		
-	void clear();
-	
-	void control(Modal modal);
-		
-	void draw(RenderWindow* window);
-	
+	Container(Rect rect);
+	~Container();
+
+    void add(Element &item);
+    void remove(Element &item);
+    void clear();
+    void detachChild(const Element* child) override;
+
+    void setRect(Rect rect) override;
+    void setPosition(Position pos) override;
+    void setSize(Size size) override;
+
+    Rect collectDirtyRect() const override;
+
+    void control(const Event* event) override;
+    void preload(engine::Renderer &renderer) override;
+    void draw(engine::Renderer &renderer) override;
+    Element* hit(int x, int y) override;
+protected:
+private:
+    // Topmost child hit at (x, y) in top-first order, or nullptr.
+    Element* hitItem(int x, int y);
+    // True if item is this container or one of its ancestors: adding it would create a cycle.
+    bool isCycle(const Element* item) const;
+
+    std::vector<Element*> items;
+    Uint16 version = 0;
+
 };
 
 }
-
-#endif
